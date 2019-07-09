@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "bulma";
 import Users from "./Users/Users";
 import Layout from "./Layout";
 import Tasks from "./tasks";

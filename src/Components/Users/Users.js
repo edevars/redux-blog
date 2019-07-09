@@ -18,30 +18,38 @@ class App extends Component {
     this.setState({ usuarios: data });
   };
 
-  ponerFilas = () =>
-    this.state.usuarios.map(usuario => (
-      <tr key={usuario.id}>
-        <td>{usuario.name}</td>
-        <td>{usuario.email}</td>
-        <td>{usuario.website}</td>
-      </tr>
-    ));
+  renderUsers = () => this.state.usuarios.map((usuario) => (
+    <tr key={usuario.id}>
+      <td>
+        {usuario.name}
+      </td>
+      <td>
+        {usuario.email.toLowerCase()}
+      </td>
+      <td>
+        {usuario.website}
+      </td>
+    </tr>
+  ));
 
   render() {
     return (
-      <div className="margen">
-        <table className="tabla">
+      <div className="container section">
+        <h1 className="title">Usuarios</h1>
+        <table className="table is-hoverable is-fullwidth">
           <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Enlace</th>
+            <tr className="is-selected">
+              <th><strong title="Usuario">Usuario</strong></th>
+              <th><strong title="E-mail">E-mail</strong></th>
+              <th><strong title="Website">Website</strong></th>
             </tr>
           </thead>
-          <tbody>{this.ponerFilas()}</tbody>
+          <tbody>
+            {this.renderUsers()}
+          </tbody>
         </table>
       </div>
-    );
+    )
   }
 }
 
