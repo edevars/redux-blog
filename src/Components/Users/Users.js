@@ -8,12 +8,6 @@ class App extends Component {
     this.props.getAll();
   }
 
-  fetchUsers = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
-    let data = await response.json();
-    this.setState({ usuarios: data });
-  };
-
   renderUsers = () =>
     this.props.usuarios.map(usuario => (
       <tr key={usuario.id}>
@@ -24,7 +18,6 @@ class App extends Component {
     ));
 
   render() {
-    console.log(this.props);
     return (
       <div className="container section">
         <h1 className="title">Usuarios</h1>
