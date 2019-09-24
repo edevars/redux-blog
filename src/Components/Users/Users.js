@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as usuariosActions from "../../actions/usuariosActions";
 
 class App extends Component {
- 
-
-  // componentDidMount() {
-  //   this.fetchUsers();
-  // }
+  componentDidMount() {
+    // this.fetchUsers();
+    this.props.getAll();
+  }
 
   fetchUsers = async () => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
@@ -24,6 +24,7 @@ class App extends Component {
     ));
 
   render() {
+    console.log(this.props);
     return (
       <div className="container section">
         <h1 className="title">Usuarios</h1>
@@ -54,7 +55,5 @@ const mapStateToProps = reducers => {
 
 export default connect(
   mapStateToProps,
-  {
-    /* Actions */
-  }
+  usuariosActions
 )(App);
