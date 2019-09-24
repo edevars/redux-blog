@@ -5,13 +5,16 @@ import Users from "./Users/Users";
 import Layout from "./Layout";
 import Tasks from "./tasks";
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import reduxThunk from "redux-thunk";
+
 import reducers from "../reducers";
 
 const store = createStore(
   reducers, //Todos los reducers
-  {} //Estado inicial
+  {}, //Estado inicial
+  applyMiddleware(reduxThunk)
 );
 
 const App = () => (
