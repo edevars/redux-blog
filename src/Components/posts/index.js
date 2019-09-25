@@ -8,7 +8,7 @@ class Posts extends Component {
     if (!this.props.usuariosReducer.usuarios.length) {
       this.props.getAllUsers();
     }
-    this.props.getAllPosts();
+    this.props.getPostsByUser(this.props.match.params.index);
   }
 
   render() {
