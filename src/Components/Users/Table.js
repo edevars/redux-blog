@@ -5,19 +5,17 @@ import { Link } from "react-router-dom";
 
 const Table = props => {
   const setUsers = () => {
-    return props.usuarios.map((usuario, index) => (
-      <>
-        <tr key={usuario.id}>
-          <td>{usuario.name}</td>
-          <td>{usuario.email.toLowerCase()}</td>
-          <td>{usuario.website}</td>
-          <td>
-            <Link to={`/publicaciones/${index}`}>
-              <i className="fas fa-eye" />
-            </Link>
-          </td>
-        </tr>
-      </>
+    return props.usuarios.map(usuario => (
+      <tr key={usuario.id}>
+        <td>{usuario.name}</td>
+        <td>{usuario.email.toLowerCase()}</td>
+        <td>{usuario.website}</td>
+        <td>
+          <Link to={`/publicaciones/${usuario.id}`}>
+            <i className="fas fa-eye" />
+          </Link>
+        </td>
+      </tr>
     ));
   };
 
