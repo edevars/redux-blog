@@ -4,6 +4,7 @@ import "bulma";
 import Users from "./Users/Users";
 import Layout from "./Layout";
 import Tasks from "./tasks";
+import Posts from './posts'
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -24,6 +25,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={Users} />
           <Route exact path="/tareas" component={Tasks} />
+          <Route exact path="/publicaciones/:index" component={Posts} />
         </Switch>
       </Layout>
     </BrowserRouter>

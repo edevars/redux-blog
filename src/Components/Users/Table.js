@@ -1,14 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import "@fortawesome/fontawesome-free/css/all.css";
+import { Link } from "react-router-dom";
 
 const Table = props => {
   const setUsers = () => {
-    return props.usuarios.map(usuario => (
+    return props.usuarios.map((usuario, index) => (
       <>
         <tr key={usuario.id}>
           <td>{usuario.name}</td>
           <td>{usuario.email.toLowerCase()}</td>
           <td>{usuario.website}</td>
+          <td>
+            <Link to={`/publicaciones/${index}`}>
+              <i className="fas fa-eye" />
+            </Link>
+          </td>
         </tr>
       </>
     ));
@@ -28,6 +35,9 @@ const Table = props => {
             </th>
             <th>
               <strong title="Website">Website</strong>
+            </th>
+            <th>
+              <strong title="Publicaciones">Publicaciones</strong>
             </th>
           </tr>
         </thead>
