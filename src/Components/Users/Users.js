@@ -8,7 +8,7 @@ import Table from "./Table";
 class App extends Component {
   componentDidMount() {
     // this.fetchUsers();
-    this.props.getAll();
+    this.props.getAllUsers();
   }
 
   renderTable = () => {
