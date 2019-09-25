@@ -4,18 +4,19 @@ import "bulma";
 import Users from "./Users/Users";
 import Layout from "./Layout";
 import Tasks from "./tasks";
-import Posts from './posts'
+import Posts from "./posts";
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 
 import reducers from "../reducers";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const store = createStore(
   reducers, //Todos los reducers
   {}, //Estado inicial
-  applyMiddleware(reduxThunk)
+  composeWithDevTools(applyMiddleware(reduxThunk))
 );
 
 const App = () => (
