@@ -6,6 +6,10 @@ import {
   ERROR
 } from "../types/publicacionesTypes";
 
+import * as usuarioTypes from "../types/usuariosTypes";
+
+const { TRAER_TODOS: TRAER_TODOS_USUARIOS } = usuarioTypes;
+
 export const getAllPosts = () => async dispatch => {
   dispatch({
     type: CARGANDO
@@ -31,6 +35,7 @@ export const getAllPosts = () => async dispatch => {
 
 export const getPostsByUser = id => async (dispatch, getState) => {
   const { publicaciones } = getState().publicacionesReducer;
+  const { usuarios } = getState().usuariosReducer;
 
   try {
     const existsPosts = publicaciones.filter(usuario => usuario.userId === id);
@@ -48,6 +53,21 @@ export const getPostsByUser = id => async (dispatch, getState) => {
         ...publicaciones,
         { userId: id, posts: response.data }
       ];
+
+      const publicacion_key = publicacionesActualizadas.length - 1;
+
+      const usuariosActualizados = [...usuarios];
+
+      usuariosActualizados[id - 1] = {
+        ...usuarios[id - 1],
+        publicacion_key
+      };
+
+      dispatch({
+        type: TRAER_TODOS_USUARIOS,
+        payload: usuariosActualizados
+      });
+
       dispatch({
         type: TRAER_POSTS_POR_USUARIO,
         payload: publicacionesActualizadas

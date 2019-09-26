@@ -4,11 +4,11 @@ import * as usuariosActions from "../../actions/usuariosActions";
 import * as publicacionesActions from "../../actions/publicacionesActions";
 
 class Posts extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.props.usuariosReducer.usuarios.length) {
-      this.props.getAllUsers();
+      await this.props.getAllUsers();
     }
-    this.props.getPostsByUser(this.props.match.params.index);
+    await this.props.getPostsByUser(this.props.match.params.index);
   }
 
   render() {
