@@ -4,6 +4,7 @@ import * as usuariosActions from "../../actions/usuariosActions";
 import * as publicacionesActions from "../../actions/publicacionesActions";
 import Spinner from "../general/Spinner";
 import Fatal from "../general/Fatal";
+import Post from "./Post";
 
 class Posts extends Component {
   async componentDidMount() {
@@ -15,6 +16,8 @@ class Posts extends Component {
 
   render() {
     const { index } = this.props.match.params;
+    const { usuarios } = this.props.usuariosReducer;
+    const { publicaciones } = this.props.publicacionesReducer;
     console.log(this.props);
 
     const {
@@ -27,25 +30,49 @@ class Posts extends Component {
       error: errorUsers
     } = this.props.usuariosReducer;
 
-    const showContent = () => {
-      if (loadingUsers || loadingPosts) {
+    const showUserName = () => {
+      if (loadingUsers || loadingPosts || !usuarios.length) {
         return <Spinner></Spinner>;
       } else {
-        return <h1 className="title">Publicacion del usuario {index}</h1>;
+        const { name } = usuarios[index - 1];
+        return <h1 className="title is-1 has-text-primary">Posts de {name}</h1>;
       }
     };
 
-    const handleErrorWithContent = () => {
+    const handleErrorUserName = () => {
       if (errorUsers) {
         return <Fatal message={errorUsers}></Fatal>;
-      } else if (errorPosts) {
-        return <Fatal message={errorPosts}></Fatal>;
       } else {
-        return showContent();
+        return showUserName();
       }
     };
 
-    return <>{handleErrorWithContent()}</>;
+    const renderPosts = () => {
+      const existsPosts = publicaciones.filter(
+        usuario => usuario.userId === index
+      );
+
+      if (errorPosts) {
+        return <Fatal message={errorPosts}></Fatal>;
+      } else if (
+        existsPosts.length &&
+        usuarios.length &&
+        publicaciones.length
+      ) {
+        const { publicacion_key: key } = usuarios[index - 1];
+        const loadPosts = publicaciones[key].posts.map(post => (
+          <Post key={post.id} title={post.title} body={post.body}></Post>
+        ));
+        return loadPosts;
+      }
+    };
+
+    return (
+      <>
+        {handleErrorUserName()}
+        {renderPosts()}
+      </>
+    );
   }
 }
 
