@@ -26,7 +26,6 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case AGREGAR_COMENTARIOS:
-      console.log("Este es el action payload", action.payload);
       return {
         ...state,
         publicaciones: action.payload,

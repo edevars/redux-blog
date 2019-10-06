@@ -18,7 +18,6 @@ class Posts extends Component {
     const { index } = this.props.match.params;
     const { usuarios } = this.props.usuariosReducer;
     const { publicaciones } = this.props.publicacionesReducer;
-    console.log(this.props);
 
     const {
       loading: loadingPosts,

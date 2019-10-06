@@ -114,6 +114,11 @@ export const obtenerComentarios = (id, userId) => async (
   });
 
   if (!publicacionEspecifica[0].comentarios.length) {
+    
+    dispatch({
+      type: CARGANDO
+    });
+
     try {
       const response = await axios.get(
         `https://jsonplaceholder.typicode.com/comments?postId=${id}`
