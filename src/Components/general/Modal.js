@@ -27,7 +27,11 @@ const Modal = props => {
       <div className="modal-background"></div>
       <div className="modal-card">
         {loading ? (
-          <Spinner></Spinner>
+          <div className="box">
+            <div className="media">
+              <Spinner></Spinner>
+            </div>
+          </div>
         ) : (
           <>
             <header className="modal-card-head">
