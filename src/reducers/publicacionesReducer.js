@@ -2,7 +2,9 @@ import {
   TRAER_TODOS,
   TRAER_POSTS_POR_USUARIO,
   CARGANDO,
-  ERROR
+  ERROR,
+  AGREGAR_COMENTARIOS,
+  ABRIR_CERRAR_MODAL
 } from "../types/publicacionesTypes";
 
 const INITIAL_STATE = {
@@ -21,6 +23,20 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         publicaciones: action.payload,
         loading: false
+      };
+
+    case AGREGAR_COMENTARIOS:
+      console.log("Este es el action payload", action.payload);
+      return {
+        ...state,
+        publicaciones: action.payload,
+        loading: false
+      };
+
+    case ABRIR_CERRAR_MODAL:
+      return {
+        ...state,
+        publicaciones: action.payload
       };
 
     case CARGANDO:

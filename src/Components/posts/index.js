@@ -61,7 +61,15 @@ class Posts extends Component {
       ) {
         const { publicacion_key: key } = usuarios[index - 1];
         const loadPosts = publicaciones[key].posts.map(post => (
-          <Post key={post.id} title={post.title} body={post.body}></Post>
+          <Post
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            userId={this.props.match.params.index}
+            body={post.body}
+            handleOpen={this.props.obtenerComentarios}
+            open={post.abierto}
+          ></Post>
         ));
         return loadPosts;
       }

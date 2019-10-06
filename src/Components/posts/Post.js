@@ -2,7 +2,7 @@ import React from "react";
 
 const Post = props => {
   return (
-    <div className="box">
+    <div className="box" onClick={() => props.handleOpen(props.id, props.userId)}>
       <article className="media">
         <div className="media-left">
           <figure className="image ">
@@ -36,6 +36,7 @@ const Post = props => {
               </a>
             </div>
           </nav>
+          {props.open ? <p>Esta abierto</p> : <p>Esta cerrado</p>}
         </div>
       </article>
     </div>
